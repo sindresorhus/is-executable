@@ -38,7 +38,7 @@
   "scripts": {
     "eslint": "eslint --fix .",
     "fixpack": "fixpack",
-    "nyc": "nyc check-coverage -b 0 -f 0 -l 80 -s 80",
+    "nyc": "nyc check-coverage -b 50 -f 50 -l 80 -s 80",
     "posttest": "npm-run-all eslint fixpack nyc",
     "test": "nyc ava"
   }

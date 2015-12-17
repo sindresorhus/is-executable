@@ -15,12 +15,26 @@ var pathExts = !isWindows ? [] : (function () {
   /* eslint-enable no-process-env */
 }());
 
-module.exports = function isExe (filePath) {};
+module.exports = function isExe (filePath) {
+  return new Promise(function (resolve) {
+    fs.access(filePath, fs.X_OK, function (err) {
+      if (err) {
+        resolve(false);
+        return;
+      }
+      if (isWindows) {
+        resolve(~pathExts.indexOf(path.extname(filePath)));
+        return;
+      }
+      resolve(true);
+    });
+  });
+};
 
 module.exports.sync = function isExeSync (filePath) {
   try {
     fs.accessSync(filePath, fs.X_OK);
-    return !isWindows ? true : pathExts.indexOf(path.extname(filePath));
+    return !isWindows ? true : ~pathExts.indexOf(path.extname(filePath));
   } catch (err) {
     return false;
   }

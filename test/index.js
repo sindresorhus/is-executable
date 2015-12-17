@@ -8,6 +8,8 @@ const test = require('ava');
 const isExe = require('..');
 const isExeSync = isExe.sync;
 
+const isWindows = os.type().indexOf('Windows') === 0;
+
 const fixtureCli = path.join(__dirname, 'fixtures', 'cli');
 const fixtureCmd = path.join(__dirname, 'fixtures', 'cli.cmd');
 
@@ -19,24 +21,17 @@ test('exports a .sync function', (t) => {
   t.is(typeof isExeSync, 'function');
 });
 
-if (os.type().indexOf('Windows') === 0) {
-  test('isExe.sync("fixtures\\cli") is false', (t) => {
-    t.notOk(isExeSync(fixtureCli));
-  });
-  test('isExe.sync("fixtures\\cli.cmd") is true', (t) => {
-    t.ok(isExeSync(fixtureCmd));
-  });
-
-  test('isExe("fixtures\\cli") is false', () => {});
-  test('isExe("fixtures\\cli.cmd") is true', () => {});
-} else { // OS X or Linux
-  test('isExe.sync("fixtures\\cli") is true', (t) => {
-    t.ok(isExeSync(fixtureCli));
-  });
-  test('isExe.sync("fixtures\\cli.cmd") is false', (t) => {
-    t.notOk(isExeSync(fixtureCmd));
+[
+  { filePath: fixtureCli, expected: !isWindows },
+  { filePath: fixtureCmd, expected: isWindows }
+].forEach(({ filePath, expected }) => {
+  test(`isExe("${path.basename(filePath)}") resolves with ${expected}`, (t) => {
+    return isExe(filePath).then((result) => {
+      t.is(result, expected);
+    });
   });
 
-  test('isExe("fixtures\\cli") is true', () => {});
-  test('isExe("fixtures\\cli.cmd") is false', () => {});
-}
+  test(`isExe.sync("${path.basename(filePath)}") is ${expected}`, (t) => {
+    t.is(isExeSync(filePath), expected);
+  });
+});
