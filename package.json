@@ -5,6 +5,9 @@
   "bugs": {
     "url": "https://github.com/jokeyrhyme/is-executable.js/issues"
   },
+  "dependencies": {
+    "graceful-fs": "4.1.2"
+  },
   "devDependencies": {
     "@jokeyrhyme/eslint-config-es2015": "1.0.0",
     "@jokeyrhyme/eslint-config-es5": "^1.0.0",
@@ -16,6 +19,10 @@
     "fixpack": "^2.2.0",
     "npm-run-all": "^1.4.0",
     "nyc": "^5.0.1"
+  },
+  "engines": {
+    "node": ">=4.0.0",
+    "npm": ">=3.0.0"
   },
   "files": [
     "index.js"
@@ -31,12 +38,8 @@
   "scripts": {
     "eslint": "eslint --fix .",
     "fixpack": "fixpack",
-    "nyc": "nyc check-coverage -b 0 -f 0 -l 0 -s 0",
+    "nyc": "nyc check-coverage -b 0 -f 0 -l 80 -s 80",
     "posttest": "npm-run-all eslint fixpack nyc",
     "test": "nyc ava"
-  },
-  "engines": {
-    "node": ">=4.0.0",
-    "npm": ">=3.0.0"
   }
 }
