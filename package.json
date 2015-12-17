@@ -1,0 +1,49 @@
+{
+  "name": "is-executable",
+  "description": "cross-platform helper to determine whether a file can be executed",
+  "version": "1.0.1",
+  "author": "Ron Waldon <jokeyrhyme@gmail.com> (https://github.com/jokeyrhyme)",
+  "bugs": {
+    "url": "https://github.com/jokeyrhyme/is-executable.js/issues"
+  },
+  "dependencies": {
+    "graceful-fs": "4.1.11"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "eslint": "^4.1.0",
+    "eslint-config-semistandard": "^12.0.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "fixpack": "^2.3.1"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "engines": {
+    "node": ">=4.0.0",
+    "npm": ">=3.0.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "homepage": "https://github.com/jokeyrhyme/is-executable.js#readme",
+  "keywords": [],
+  "license": "BSD-2-Clause",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jokeyrhyme/is-executable.js.git"
+  },
+  "scripts": {
+    "ava": "ava",
+    "eslint": "eslint --fix --cache .",
+    "fixpack": "fixpack",
+    "posttest": "npm run eslint",
+    "pretest": "npm run fixpack",
+    "test": "ava"
+  }
+}
