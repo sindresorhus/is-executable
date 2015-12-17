@@ -1,0 +1,38 @@
+{
+  "name": "is-executable",
+  "description": "cross-platform helper to determine whether a file can be executed",
+  "version": "1.0.0",
+  "bugs": {
+    "url": "https://github.com/jokeyrhyme/is-executable.js/issues"
+  },
+  "devDependencies": {
+    "@jokeyrhyme/eslint-config-es2015": "1.0.0",
+    "@jokeyrhyme/eslint-config-es5": "^1.0.0",
+    "ava": "^0.7.0",
+    "eslint": "^1.10.3",
+    "eslint-config-semistandard": "^5.0.0",
+    "eslint-config-standard": "^4.4.0",
+    "eslint-plugin-standard": "^1.3.1",
+    "fixpack": "^2.2.0",
+    "npm-run-all": "^1.4.0",
+    "nyc": "^5.0.1"
+  },
+  "files": [
+    "index.js"
+  ],
+  "homepage": "https://github.com/jokeyrhyme/is-executable.js#readme",
+  "keywords": [],
+  "license": "BSD-2-Clause",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jokeyrhyme/is-executable.js.git"
+  },
+  "scripts": {
+    "eslint": "eslint --fix .",
+    "fixpack": "fixpack",
+    "nyc": "nyc check-coverage -b 0 -f 0 -l 0 -s 0",
+    "posttest": "npm-run-all eslint fixpack nyc",
+    "test": "nyc ava"
+  }
+}
