@@ -23,7 +23,7 @@ module.exports = function isExe (filePath) {
         return;
       }
       if (isWindows) {
-        resolve(~pathExts.indexOf(path.extname(filePath)));
+        resolve(pathExts.indexOf(path.extname(filePath)) !== -1);
         return;
       }
       resolve(true);
@@ -34,7 +34,7 @@ module.exports = function isExe (filePath) {
 module.exports.sync = function isExeSync (filePath) {
   try {
     fs.accessSync(filePath, fs.X_OK);
-    return !isWindows ? true : ~pathExts.indexOf(path.extname(filePath));
+    return !isWindows ? true : pathExts.indexOf(path.extname(filePath)) !== -1;
   } catch (err) {
     return false;
   }
