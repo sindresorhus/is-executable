@@ -1,7 +1,7 @@
 {
   "name": "is-executable",
   "description": "cross-platform helper to determine whether a file can be executed",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "bugs": {
     "url": "https://github.com/jokeyrhyme/is-executable.js/issues"
   },
