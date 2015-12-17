@@ -17,8 +17,7 @@
     "eslint-config-standard": "^4.4.0",
     "eslint-plugin-standard": "^1.3.1",
     "fixpack": "^2.2.0",
-    "npm-run-all": "^1.4.0",
-    "nyc": "^5.0.1"
+    "npm-run-all": "^1.4.0"
   },
   "engines": {
     "node": ">=4.0.0",
@@ -38,8 +37,7 @@
   "scripts": {
     "eslint": "eslint --fix .",
     "fixpack": "fixpack",
-    "nyc": "nyc check-coverage -b 50 -f 50 -l 80 -s 80",
-    "posttest": "npm-run-all eslint fixpack nyc",
-    "test": "nyc ava"
+    "posttest": "npm-run-all eslint fixpack",
+    "test": "ava"
   }
 }
