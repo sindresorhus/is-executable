@@ -34,5 +34,9 @@
     "nyc": "nyc check-coverage -b 0 -f 0 -l 0 -s 0",
     "posttest": "npm-run-all eslint fixpack nyc",
     "test": "nyc ava"
+  },
+  "engines": {
+    "node": ">=4.0.0",
+    "npm": ">=3.0.0"
   }
 }
