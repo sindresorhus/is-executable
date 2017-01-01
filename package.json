@@ -2,22 +2,27 @@
   "name": "is-executable",
   "description": "cross-platform helper to determine whether a file can be executed",
   "version": "1.0.1",
+  "author": "Ron Waldon <jokeyrhyme@gmail.com> (https://github.com/jokeyrhyme)",
   "bugs": {
     "url": "https://github.com/jokeyrhyme/is-executable.js/issues"
   },
   "dependencies": {
-    "graceful-fs": "4.1.2"
+    "graceful-fs": "4.1.11"
   },
   "devDependencies": {
-    "@jokeyrhyme/eslint-config-es2015": "1.0.0",
-    "@jokeyrhyme/eslint-config-es5": "^1.0.0",
-    "ava": "^0.7.0",
-    "eslint": "^1.10.3",
-    "eslint-config-semistandard": "^5.0.0",
-    "eslint-config-standard": "^4.4.0",
-    "eslint-plugin-standard": "^1.3.1",
+    "ava": "^0.17.0",
+    "eslint": "^3.12.2",
+    "eslint-config-semistandard": "^7.0.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-node": "^3.0.5",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
     "fixpack": "^2.2.0",
-    "npm-run-all": "^1.4.0"
+    "flow-bin": "^0.37.4",
+    "npm-run-all": "^4.0.0"
+  },
+  "directories": {
+    "test": "test"
   },
   "engines": {
     "node": ">=4.0.0",
@@ -35,9 +40,11 @@
     "url": "git+https://github.com/jokeyrhyme/is-executable.js.git"
   },
   "scripts": {
-    "eslint": "eslint --fix .",
+    "ava": "ava",
+    "eslint": "eslint --fix --cache .",
     "fixpack": "fixpack",
-    "posttest": "npm-run-all eslint fixpack",
+    "flow_check": "flow check",
+    "posttest": "npm-run-all eslint flow_check fixpack",
     "test": "ava"
   }
 }

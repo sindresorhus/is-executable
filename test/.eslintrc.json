@@ -1,3 +1,6 @@
 {
-  "extends": ["@jokeyrhyme/es2015"]
+  "rules": {
+    "node/no-unpublished-require": 0,
+    "node/no-unsupported-features": 0
+  }
 }
