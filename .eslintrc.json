@@ -1,3 +1,10 @@
 {
-  "extends": ["@jokeyrhyme/es5"]
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    "standard"
+  ],
+  "plugins": [
+    "node"
+  ]
 }
