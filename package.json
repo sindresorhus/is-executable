@@ -10,7 +10,7 @@
     "graceful-fs": "4.1.11"
   },
   "devDependencies": {
-    "ava": "^0.23.0",
+    "ava": "^0.24.0",
     "eslint": "^4.1.0",
     "eslint-config-semistandard": "^11.0.0",
     "eslint-config-standard": "^10.0.0",
