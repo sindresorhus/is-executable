@@ -7,7 +7,7 @@
     "url": "https://github.com/jokeyrhyme/is-executable.js/issues"
   },
   "dependencies": {
-    "graceful-fs": "4.1.11"
+    "graceful-fs": "4.1.12"
   },
   "devDependencies": {
     "ava": "^0.25.0",
