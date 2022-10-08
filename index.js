@@ -1,41 +1,25 @@
-'use strict'
+import process from 'node:process';
+import path from 'node:path';
+import fs from 'node:fs';
+import fsPromises from 'node:fs/promises';
 
-var os = require('os')
-var path = require('path')
+const isWindows = process.platform === 'win32';
+const pathExts = isWindows ? new Set(process.env.PATHEXT?.split(';').map(pathExt => pathExt.toLowerCase())) : [];
 
-var fs = require('graceful-fs')
-
-var isWindows = os.type().indexOf('Windows') === 0
-
-var pathExts = !isWindows ? [] : (function () {
-  /* eslint-disable no-process-env */ // need this for cross-platform use
-  return (process.env.PATHEXT || '').split(';').map(function (pathExt) {
-    return pathExt.toLowerCase()
-  })
-  /* eslint-enable no-process-env */
-}())
-
-module.exports = function isExe (filePath) {
-  return new Promise(function (resolve) {
-    fs.access(filePath, fs.X_OK, function (err) {
-      if (err) {
-        resolve(false)
-        return
-      }
-      if (isWindows) {
-        resolve(pathExts.indexOf(path.extname(filePath)) !== -1)
-        return
-      }
-      resolve(true)
-    })
-  })
+export async function isExecutable(filePath) {
+	try {
+		await fsPromises.access(filePath, fs.X_OK);
+		return isWindows ? pathExts.has(path.extname(filePath)) : true;
+	} catch {
+		return false;
+	}
 }
 
-module.exports.sync = function isExeSync (filePath) {
-  try {
-    fs.accessSync(filePath, fs.X_OK)
-    return !isWindows ? true : pathExts.indexOf(path.extname(filePath)) !== -1
-  } catch (err) {
-    return false
-  }
+export function isExecutableSync(filePath) {
+	try {
+		fs.accessSync(filePath, fs.X_OK);
+		return isWindows ? pathExts.has(path.extname(filePath)) : true;
+	} catch {
+		return false;
+	}
 }
