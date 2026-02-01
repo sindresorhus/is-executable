@@ -7,6 +7,8 @@
 	"funding": "https://github.com/sponsors/sindresorhus",
 	"type": "module",
 	"exports": "./index.js",
+	"types": "./index.d.ts",
+	"sideEffects": false,
 	"engines": {
 		"node": ">=14.16"
 	},
