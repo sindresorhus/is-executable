@@ -8,8 +8,18 @@ const pathExts = isWindows ? new Set(process.env.PATHEXT?.split(';').map(pathExt
 
 export async function isExecutable(filePath) {
 	try {
-		await fsPromises.access(filePath, fs.X_OK);
-		return isWindows ? pathExts.has(path.extname(filePath)) : true;
+		const stats = await fsPromises.stat(filePath);
+
+		if (isWindows) {
+			return stats.isFile() && pathExts.has(path.extname(filePath));
+		}
+
+		if (!stats.isFile()) {
+			return false;
+		}
+
+		await fsPromises.access(filePath, fs.constants.X_OK);
+		return true;
 	} catch {
 		return false;
 	}
@@ -17,8 +27,18 @@ export async function isExecutable(filePath) {
 
 export function isExecutableSync(filePath) {
 	try {
-		fs.accessSync(filePath, fs.X_OK);
-		return isWindows ? pathExts.has(path.extname(filePath)) : true;
+		const stats = fs.statSync(filePath);
+
+		if (isWindows) {
+			return stats.isFile() && pathExts.has(path.extname(filePath));
+		}
+
+		if (!stats.isFile()) {
+			return false;
+		}
+
+		fs.accessSync(filePath, fs.constants.X_OK);
+		return true;
 	} catch {
 		return false;
 	}
